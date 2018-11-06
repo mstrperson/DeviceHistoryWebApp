@@ -173,6 +173,10 @@
     <Compile Include="Controllers\HistoryEntriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="CSV\ConflictRuleChecker.cs" />
+    <Compile Include="CSV\CSV.cs" />
+    <Compile Include="CSV\ExtendedCSV.cs" />
+    <Compile Include="CSV\NormalizationRule.cs" />
     <Compile Include="Device.cs">
       <DependentUpon>DeviceHistoryModel.tt</DependentUpon>
     </Compile>
@@ -289,6 +293,8 @@
     <Content Include="Views\HistoryEntries\Details.cshtml" />
     <Content Include="Views\HistoryEntries\Edit.cshtml" />
     <Content Include="Views\HistoryEntries\Index.cshtml" />
+    <Content Include="Views\Devices\Import.cshtml" />
+    <Content Include="Views\DeviceTypes\Import.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
