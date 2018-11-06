@@ -168,7 +168,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DevicesController.cs" />
+    <Compile Include="Controllers\DeviceTypesController.cs" />
+    <Compile Include="Controllers\HistoryEntriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Device.cs">
       <DependentUpon>DeviceHistoryModel.tt</DependentUpon>
     </Compile>
@@ -265,6 +269,26 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Devices\Create.cshtml" />
+    <Content Include="Views\Devices\Delete.cshtml" />
+    <Content Include="Views\Devices\Details.cshtml" />
+    <Content Include="Views\Devices\Edit.cshtml" />
+    <Content Include="Views\Devices\Index.cshtml" />
+    <Content Include="Views\DeviceTypes\Create.cshtml" />
+    <Content Include="Views\DeviceTypes\Delete.cshtml" />
+    <Content Include="Views\DeviceTypes\Details.cshtml" />
+    <Content Include="Views\DeviceTypes\Edit.cshtml" />
+    <Content Include="Views\DeviceTypes\Index.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\HistoryEntries\Create.cshtml" />
+    <Content Include="Views\HistoryEntries\Delete.cshtml" />
+    <Content Include="Views\HistoryEntries\Details.cshtml" />
+    <Content Include="Views\HistoryEntries\Edit.cshtml" />
+    <Content Include="Views\HistoryEntries\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
