@@ -7,12 +7,53 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DeviceHistoryWebApp;
+using Csv;
 
 namespace DeviceHistoryWebApp.Controllers
 {
     public class UsersController : Controller
     {
         private DeviceHistoryEntities db = new DeviceHistoryEntities();
+
+        [HttpGet]
+        public ActionResult Import()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Import(HttpPostedFileBase file, bool update = true)
+        {
+            CSV csv = new CSV(file.InputStream);
+            int nextId = DeviceHistoryWebApp.User.NextAvailableId;
+
+            foreach (Dictionary<string, string> row in csv)
+            {
+                string email = row["Email"];
+                
+                if (db.Users.ToList().Where(u => u.Email.Equals(email)).Count() <= 0)
+                {
+                    User newUser = new User()
+                    {
+                        Id = nextId++,
+                        Name = row["Name"],
+                        Notes = row["Notes"],
+                        Email = email
+                    };
+
+                    db.Users.Add(newUser);
+                }
+                else if (update)
+                {
+                    User toUpdate = db.Users.ToList().Where(u => u.Email.Equals(email)).Single();
+                    toUpdate.Name = row["Name"];
+                    toUpdate.Notes = row["Notes"];
+                }
+            }
+
+            db.SaveChanges();
+            return Index();
+        }
 
         // GET: Users
         public ActionResult Index()
