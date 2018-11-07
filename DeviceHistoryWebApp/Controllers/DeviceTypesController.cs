@@ -7,12 +7,55 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DeviceHistoryWebApp;
+using Csv;
 
 namespace DeviceHistoryWebApp.Controllers
 {
     public class DeviceTypesController : Controller
     {
         private DeviceHistoryEntities db = new DeviceHistoryEntities();
+
+        [HttpGet]
+        public ActionResult Import()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Import(HttpPostedFileBase file, bool update=true)
+        {
+            CSV csv = new CSV(file.InputStream);
+            int nextId = DeviceType.NextAvailableId;
+
+            foreach (Dictionary<string, string> row in csv)
+            {
+                string typeName = row["Name"];
+                if (db.DeviceTypes.ToList().Where(t => t.Name.Equals(typeName)).Count() <= 0)
+                {
+                    DeviceType newType = new DeviceType()
+                    {
+                        Id = nextId++,
+                        Name = typeName,
+                        Model = row["Model"],
+                        Category = row["Category"],
+                        Notes = row["Notes"]
+                    };
+
+                    db.DeviceTypes.Add(newType);
+                }
+                else if(update)
+                {
+                    DeviceType type = db.DeviceTypes.ToList().Where(t => t.Name.Equals(typeName)).Single();
+                    type.Model = row["Model"];
+                    type.Category = row["Category"];
+                    type.Notes = row["Notes"];
+                }
+            }
+
+            db.SaveChanges();
+            return Index();
+        }
+
 
         // GET: DeviceTypes
         public ActionResult Index()
