@@ -295,6 +295,7 @@
     <Content Include="Views\HistoryEntries\Index.cshtml" />
     <Content Include="Views\Devices\Import.cshtml" />
     <Content Include="Views\DeviceTypes\Import.cshtml" />
+    <Content Include="Views\Users\Import.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

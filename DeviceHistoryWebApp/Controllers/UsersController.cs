@@ -52,7 +52,7 @@ namespace DeviceHistoryWebApp.Controllers
             }
 
             db.SaveChanges();
-            return Index();
+            return Redirect("~/Users");
         }
 
         // GET: Users
