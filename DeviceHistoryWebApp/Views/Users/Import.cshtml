@@ -1,11 +1,10 @@
-﻿@model DeviceHistoryWebApp.DeviceType
+﻿@model DeviceHistoryWebApp.User
 
 @{
-    ViewBag.Title = "Import Device Types";
+    ViewBag.Title = "Import Users";
 }
 
-<h2>Import Device Types</h2>
-
+<h2>Import Users</h2>
 
 <form action="" method="post" enctype="multipart/form-data">
     <p>
@@ -17,9 +16,13 @@
 <table class="table-bordered">
     <thead>Example Import</thead>
     <tr>
-        <th>Type Name</th><th>Model</th><th>Category</th><th>Notes</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Notes</th>
     </tr>
     <tr>
-        <td>Mid 2018 Macbook Pro</td><td>A1706</td><td>Laptop</td><td>Touchbar macbook pro with 8GB ram</td>
+        <td>Jason Cox</td>
+        <td>jcox@winsor.edu</td>
+        <td>Technology Support Assistant</td>
     </tr>
 </table>
