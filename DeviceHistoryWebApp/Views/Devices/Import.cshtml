@@ -1,0 +1,24 @@
+﻿@model DeviceHistoryWebApp.Device
+
+@{
+    ViewBag.Title = "Import";
+}
+
+<h2>Import Devices</h2>
+
+<form action="" method="post" enctype="multipart/form-data">
+    <p>
+        Import Devices from CSV File:  <input type="file" name="file" id="file" />
+        <input type="submit" value="Import" />
+    </p>
+</form>
+
+<table class="table-bordered">
+    <thead>Example Import</thead>
+    <tr>
+        <th>Uid</th><th>SerialNo</th><th>Type</th><th>Notes</th>
+    </tr>
+    <tr>
+        <td>LAPT-0002</td><td>C02.....</td><td>Mid 2018 Macbook Pro</td><td>Assigned to Jason Cox</td>
+    </tr>
+</table>

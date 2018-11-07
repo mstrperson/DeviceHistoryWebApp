@@ -25,6 +25,7 @@ namespace DeviceHistoryWebApp.Controllers
         public ActionResult Import(HttpPostedFileBase file, bool update=true)
         {
             CSV csv = new CSV(file.InputStream);
+
             int nextId = DeviceType.NextAvailableId;
 
             foreach (Dictionary<string, string> row in csv)
