@@ -15,6 +15,7 @@
         <h4>Device</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <!--
         <div class="form-group">
             @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -22,7 +23,7 @@
                 @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
             </div>
         </div>
-
+            -->
         <div class="form-group">
             @Html.LabelFor(model => model.Uid, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -40,10 +41,39 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TypeId, "TypeId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <script>
+                $(document).ready(function () {
+                    $("#DeviceType.Name").autocomplete({
+                        source: function (request, response) {
+                            $.ajax({
+                                url: '@Url.Action("GetVisitCustomer", "Home")',
+                                datatype: "json",
+                                data: {
+                                    Areas: 'Sales',
+                                    term: request.term
+                                },
+                                success: function (data) {
+                                    response($.map(data, function (val, item) {
+                                        return {
+                                            label: val.Name,
+                                            value: val.Name,
+                                            customerId: val.ID
+                                        }
+                                    }))
+                                }
+                            })
+                        },
+                        select: function (event, ui) {
+                            $("#CustomerID").val(ui.item.customerId);
+                        }
+                    });
+                });
+            </script>
+
+            @Html.LabelFor(model => model.DeviceType.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("TypeId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.TypeId, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model=> model.DeviceType.Name, htmlAttributes: new { @class = "form-control" })
+                @Html.HiddenFor(model => model.TypeId)
             </div>
         </div>
 
