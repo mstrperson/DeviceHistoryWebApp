@@ -43,6 +43,23 @@
         </dd>
 
     </dl>
+    <table class="table-bordered">
+        <thead>
+            Support History
+        </thead>
+        <tr>
+            <th>Date</th><th>End User</th><th>TSA</th><th>Summary</th>
+        </tr>
+        @foreach(HistoryEntry entry in Model.History)
+        {
+            <tr>
+                <td>@entry.Submitted.ToShortDateString()</td>
+                <td>@Html.ActionLink(entry.EndUser.Name, "Details", "Users", new { id = entry.EndUserId }, null)</td>
+                <td>@Html.ActionLink(entry.Creator.Name, "Details", "Users", new { id = entry.CreatorId }, null)</td>
+                <td>@entry.Summary</td>
+            </tr>
+        }
+    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
