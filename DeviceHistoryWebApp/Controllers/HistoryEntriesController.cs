@@ -50,10 +50,20 @@ namespace DeviceHistoryWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,EndUserId,CreatorId,Summary,Action,Result,DeviceId,AdditionalNotes,Submitted,LastUpdated,Closed")] HistoryEntry historyEntry)
+        public ActionResult Create([Bind(Include = "EndUserId,CreatorId,Summary,Action,Result,DeviceId,AdditionalNotes")] HistoryEntry historyEntry, bool closed = false)
         {
             if (ModelState.IsValid)
             {
+                historyEntry.Id = HistoryEntry.NextAvailableId;
+                if (historyEntry.Summary == null) historyEntry.Summary = "";
+                if (historyEntry.Action == null) historyEntry.Action = "";
+                if (historyEntry.Result == null) historyEntry.Result = "";
+                if (historyEntry.AdditionalNotes == null) historyEntry.AdditionalNotes = "";
+
+                historyEntry.Submitted = DateTime.Today;
+                historyEntry.LastUpdated = DateTime.Today;
+                historyEntry.Closed = closed ? DateTime.Today : new DateTime();
+
                 db.HistoryEntries.Add(historyEntry);
                 db.SaveChanges();
                 return RedirectToAction("Index");

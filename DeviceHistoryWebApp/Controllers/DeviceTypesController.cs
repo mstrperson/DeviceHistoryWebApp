@@ -90,10 +90,17 @@ namespace DeviceHistoryWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Model,Category,Notes")] DeviceType deviceType)
+        public ActionResult Create([Bind(Include = "Name,Model,Category,Notes")] DeviceType deviceType)
         {
             if (ModelState.IsValid)
             {
+                deviceType.Id = DeviceType.NextAvailableId;
+
+                if (deviceType.Notes == null)
+                    deviceType.Notes = "";
+                if (deviceType.Model == null)
+                    deviceType.Model = "";
+
                 db.DeviceTypes.Add(deviceType);
                 db.SaveChanges();
                 return RedirectToAction("Index");
