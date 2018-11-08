@@ -43,6 +43,22 @@
         </dd>
 
     </dl>
+    <table class="table-bordered">
+        <thead>
+            Devices
+        </thead>
+        <tr>
+            <th>Unique Id</th><th>Serial Number</th><th>Ticket Count</th>
+        </tr>
+        @foreach(Device dev in Model.Devices)
+        {
+            <tr>
+                <td>@Html.ActionLink(dev.Uid, "Details", "Devices", new { id = dev.Id }, null)</td>
+                <td>@dev.SerialNo</td>
+                <td>@dev.History.Count</td>
+            </tr>
+               }
+    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

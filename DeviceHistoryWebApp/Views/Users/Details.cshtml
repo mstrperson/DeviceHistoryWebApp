@@ -35,6 +35,48 @@
         </dd>
 
     </dl>
+
+    <table class="table-bordered">
+        <thead>
+            End User History
+        </thead>
+        <tr>
+            <th>Date</th>
+            <th>Device</th>
+            <th>TSA</th>
+            <th>Summary</th>
+        </tr>
+        @foreach (HistoryEntry entry in Model.EndUserHistory)
+        {
+        <tr>
+            <td>@entry.Submitted.ToShortDateString()</td>
+            <td>@Html.ActionLink(entry.Device.Uid, "Details", "Devices", new { id = entry.DeviceId }, null)</td>
+            <td>@Html.ActionLink(entry.Creator.Name, "Details", "Users", new { id = entry.CreatorId }, null)</td>
+            <td>@entry.Summary</td>
+        </tr>
+        }
+    </table>
+
+    <table class="table-bordered">
+        <thead>
+            Support History
+        </thead>
+        <tr>
+            <th>Date</th>
+            <th>Device</th>
+            <th>End User</th>
+            <th>Summary</th>
+        </tr>
+        @foreach (HistoryEntry entry in Model.SupportHistory)
+        {
+        <tr>
+            <td>@entry.Submitted.ToShortDateString()</td>
+            <td>@Html.ActionLink(entry.Device.Uid, "Details", "Devices", new { id = entry.DeviceId }, null)</td>
+            <td>@Html.ActionLink(entry.EndUser.Name, "Details", "Users", new { id = entry.EndUserId }, null)</td>
+            <td>@entry.Summary</td>
+        </tr>
+        }
+    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

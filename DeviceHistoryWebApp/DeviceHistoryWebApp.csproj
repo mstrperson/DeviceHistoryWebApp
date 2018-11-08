@@ -207,6 +207,7 @@
     <Compile Include="Partials\Device.cs" />
     <Compile Include="Partials\DeviceType.cs" />
     <Compile Include="Partials\HistoryEntry.cs" />
+    <Compile Include="Partials\Email.cs" />
     <Compile Include="Partials\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs">
