@@ -37,6 +37,25 @@
     </dl>
 
     <table class="table-bordered">
+        <thead>Devices</thead>
+        <tr>
+            <th>Uid</th>
+            <th>Type</th>
+            <th>Category</th>
+            <th>Serial Number</th>
+        </tr>
+        @foreach(Device device in Model.Devices)
+        {
+            <tr>
+                <td>@Html.ActionLink(device.Uid, "Details", "Devices", new { id = device.Id }, null)</td>
+                <td>@device.DeviceType.Name</td>
+                <td>@device.DeviceType.Category</td>
+                <td>@device.SerialNo</td>
+            </tr>
+        }
+    </table>
+
+    <table class="table-bordered">
         <thead>
             End User History
         </thead>
