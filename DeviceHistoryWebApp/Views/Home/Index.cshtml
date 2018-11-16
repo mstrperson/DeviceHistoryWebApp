@@ -2,24 +2,21 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>Device History</h1>
-    <h2>Recent Tickets</h2>
+    <h2 class="class2">Device History | 
+     Recent Tickets</h2>
     @using (DeviceHistoryEntities db = new DeviceHistoryEntities())
     {
         foreach(HistoryEntry entry in db.HistoryEntries.OrderByDescending(evt => evt.LastUpdated).Take(5).ToList())
         {
-            <div class="border">
-                <h3>@entry.Device.Uid</h3>
-                <h4>@entry.LastUpdated.ToLongDateString() @entry.LastUpdated.ToShortTimeString()</h4>
-                <p>@entry.Summary</p>
+                <p class="class3">@entry.Device.Uid</p>
+                <p class="class4">@entry.LastUpdated.ToLongDateString() @entry.LastUpdated.ToShortTimeString()</p>
+                <p class="class5">@entry.Summary</p>
                 <div class="btn">@Html.ActionLink("View Ticket", "Details", "HistoryEntries", new { id = entry.Id }, null)</div>
-            </div>
         }
     }
-</div>
 
-<div class="row">
+
+<body class="row">
     <div class="col-md-4">
         <h2>Getting started</h2>
         <p>
@@ -39,4 +36,3 @@
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
-</div>

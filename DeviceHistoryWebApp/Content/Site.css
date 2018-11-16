@@ -1,24 +1,172 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿
+html {
+    margin: 0px;
+    height: 100%;
+    width: 100%;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+body {
+    font-family: Helvetica;
+    font-size: 11px;
+    margin: 0px;
+    min-height: 100%;
+    width: 100%;
+    background-color: #FFFFFF;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+footer {
+    background-color: #FFFFFF;
+    font-family: Helvetica;
+    text-transform: uppercase;
+    font-size: 10px;
+    text-align: center;
+    letter-spacing: 2px;
+    color: #000000;
+    font-weight: bold;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+header {
+    background-color: #000000;
+    font-family: Helvetica;
+    letter-spacing: 2px;
+    color: #FFFFFF;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+p {
+    color: #000000;
+    background-color: #FFFFFF;
+    font-size: 12px;
+}
+
+p.class3 {
+    color: #000000;
+    background-color: #FFFFFF;
+    font-size: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+    padding-left: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding-bottom: 0px;
+    }
+
+p.class4 {
+    color: #000000;
+    background-color: #FFFFFF;
+    font-size: 13px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+    padding-left: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #000000;
+ }
+
+    p.class5 {
+        color: #000000;
+        background-color: #FFFFFF;
+        font-size: 15px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+        padding-left: 14px;
+        border-bottom: 1px solid #000000;
+    }
+
+h1 {
+    padding-left: 14px;
+}
+
+h2 {
+    color: #FFFFFF;
+    padding-bottom: 4px;
+    background-color: #000000;
+    padding-left: 4px;
+    padding-right: 14px;
+    text-align: right;
+}
+
+h2.class2 {
+    color: #000000;
+    padding-bottom: 4px;
+    background-color: #ebe066;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-top: 0px;
+    text-align: left;
+    text-transform: uppercase;
+    border-bottom: 1px dotted #000000;
+    }
+
+h3 {
+    padding-left: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Helvetica';
+}
+
+ul {
+    background-color: #000000;
+    font-family: Helvetica;
+    letter-spacing: 2px;
+    font-size: 12px;
+    color: #FFFFFF;
+    text-align: right;
+}
+
+a.class1:link, a.class1:visited {
+    color: #FFFFFF;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+a.class1:hover {
+    color: #ebe066;
+    font-size: 14px;
+}
+
+.dl-horizontal {
+    color: #000000;
+    font-size: 11px;
+}
+
+table {
+    table-layout: fixed;
+    font-family: helvetica;
+    font-size: 12px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    background-color: #ebe066;
+    color: #000000;
+    text-align: left;
+    border-right: 1px dotted #000000;
+    border-bottom: 1px dotted #000000;
+    padding: 8px;
+}
+
+    th:last-child {
+        border-right: none;
+    }
+
+td {
+    border: 1px dotted #000000;
+    text-align: left;
+    padding: 5px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.form-horizontal {
+    background-color: #FFFFFF;
+    color: #000000;
+    border: 1px dashed #000000;
+    text-align: left padding: 8px;
+    border-radius: 4px;
 }
