@@ -1,0 +1,11 @@
+﻿@model IEnumerable<DeviceHistoryWebApp.User>
+
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DropDownList("UserId", Model.Select(item => new SelectListItem { Text = item.Name, Value = Convert.ToString(item.Id) }))
+    </dt>
+    <dd>
+        <!--No idea if this line of code will actually work...........-->
+        @Html.ActionLink("Select", "_TODO_ACTION", "Users", new {  id = Convert.ToInt32(PageData["UserId"].SelectedValue) }, null)
+    </dd>
+</dl>
