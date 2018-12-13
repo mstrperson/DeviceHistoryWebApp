@@ -1,0 +1,15 @@
+﻿@model DeviceHistoryWebApp.Device
+
+<table>
+    
+    @foreach (Device dev in ViewBag.DeviceList)
+    {
+        <tr>
+            <td>@dev.Uid</td>
+            <td>@dev.SerialNo</td>
+            <td>@dev.DeviceType.Name</td>
+            <td>@Html.ActionLink("_Select", "Devices", routeValues: new { @id = dev.Id })</td>
+        </tr>
+    }
+
+</table>

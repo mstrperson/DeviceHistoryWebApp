@@ -26,6 +26,34 @@ namespace DeviceHistoryWebApp.Controllers
         {
             return PartialView();
         }
+        
+        [HttpPost]
+        public ActionResult _SearchContent(string search_input)
+        {
+
+            ContentResult result = new ContentResult() { ContentEncoding=System.Text.Encoding.Default, ContentType = "text/json" };
+            search_input = search_input.ToLowerInvariant();
+
+            List<Device> results = new List<Device>();
+
+            foreach (Device dev in db.Devices.ToList())
+            {
+                if (dev.Uid.ToLowerInvariant().Contains(search_input) || dev.SerialNo.ToLowerInvariant().Contains(search_input))
+                {
+                    results.Add(dev);
+                }
+            }
+
+
+            if (results.Count <= 0) result.Content = "";
+
+            else if (results.Count == 1) result.Content = results[0].JsonData;
+
+            else result.Content = Device.GetJsonData(results);
+
+            return result;
+        }
+
 
         [HttpPost]
         public ActionResult _Search(String search_input)
@@ -47,6 +75,26 @@ namespace DeviceHistoryWebApp.Controllers
             if (results.Count == 1) return RedirectToAction("Details", new { @id = results[0] });
 
             return RedirectToAction("List", new { @list = results });
+        }
+
+        [HttpGet]
+        public ActionResult _List(List<int> list)
+        {
+            List<Device> devList = new List<Device>();
+
+            foreach (int id in list)
+                devList.Add(db.Devices.Find(id));
+
+            ViewBag.DeviceList = devList;
+
+            return PartialView();
+        }
+
+        [HttpGet]
+        public ActionResult _Select(int id)
+        {
+            Device dev = db.Devices.Find(id);
+            return new ContentResult() { ContentEncoding = System.Text.Encoding.Default, ContentType = "text/json", Content = dev.JsonData };
         }
 
         [HttpGet]

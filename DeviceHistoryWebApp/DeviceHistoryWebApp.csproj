@@ -346,6 +346,7 @@
     <Content Include="Views\HistoryEntries\ImbededCreate.cshtml" />
     <Content Include="Views\Devices\_Search.cshtml" />
     <Content Include="Views\Devices\List.cshtml" />
+    <Content Include="Views\Devices\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
