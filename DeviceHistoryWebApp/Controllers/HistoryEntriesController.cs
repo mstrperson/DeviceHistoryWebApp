@@ -36,6 +36,42 @@ namespace DeviceHistoryWebApp.Controllers
             return View(historyEntry);
         }
 
+        // GET: HistoryEntries/ImbededCreate
+        public ActionResult ImbededCreate()
+        {
+            ViewBag.DeviceId = new SelectList(db.Devices, "Id", "Uid");
+            ViewBag.EndUserId = new SelectList(db.Users, "Id", "Name");
+            ViewBag.CreatorId = new SelectList(db.Users, "Id", "Name");
+            return PartialView();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ImbededCreate([Bind(Include = "EndUserId,CreatorId,Summary,Action,Result,DeviceId,AdditionalNotes")] HistoryEntry historyEntry, bool closed = false)
+        {
+            if (ModelState.IsValid)
+            {
+                historyEntry.Id = HistoryEntry.NextAvailableId;
+                if (historyEntry.Summary == null) historyEntry.Summary = "";
+                if (historyEntry.Action == null) historyEntry.Action = "";
+                if (historyEntry.Result == null) historyEntry.Result = "";
+                if (historyEntry.AdditionalNotes == null) historyEntry.AdditionalNotes = "";
+
+                historyEntry.Submitted = DateTime.Today;
+                historyEntry.LastUpdated = DateTime.Today;
+                historyEntry.Closed = closed ? DateTime.Today : new DateTime();
+
+                db.HistoryEntries.Add(historyEntry);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+
+            ViewBag.DeviceId = new SelectList(db.Devices, "Id", "Uid", historyEntry.DeviceId);
+            ViewBag.EndUserId = new SelectList(db.Users, "Id", "Name", historyEntry.EndUserId);
+            ViewBag.CreatorId = new SelectList(db.Users, "Id", "Name", historyEntry.CreatorId);
+            return View(historyEntry);
+        }
+
         // GET: HistoryEntries/Create
         public ActionResult Create()
         {
