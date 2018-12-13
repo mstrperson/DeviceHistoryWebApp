@@ -37,7 +37,7 @@ namespace DeviceHistoryWebApp.Controllers
         }
 
         // GET: HistoryEntries/ImbededCreate
-        public ActionResult ImbededCreate()
+        public ActionResult _ImbededCreate()
         {
             ViewBag.DeviceId = new SelectList(db.Devices, "Id", "Uid");
             ViewBag.EndUserId = new SelectList(db.Users, "Id", "Name");
@@ -47,7 +47,7 @@ namespace DeviceHistoryWebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ImbededCreate([Bind(Include = "EndUserId,CreatorId,Summary,Action,Result,DeviceId,AdditionalNotes")] HistoryEntry historyEntry, bool closed = false)
+        public ActionResult _ImbededCreate([Bind(Include = "EndUserId,CreatorId,Summary,Action,Result,DeviceId,AdditionalNotes")] HistoryEntry historyEntry, bool closed = false)
         {
             if (ModelState.IsValid)
             {
