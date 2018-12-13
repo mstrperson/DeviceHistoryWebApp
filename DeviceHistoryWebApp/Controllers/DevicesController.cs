@@ -21,6 +21,45 @@ namespace DeviceHistoryWebApp.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult _Search()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult _Search(String search_input)
+        {
+            search_input = search_input.ToLowerInvariant();
+
+            List<int> results = new List<int>();
+
+            foreach(Device dev in db.Devices.ToList())
+            {
+                if(dev.Uid.ToLowerInvariant().Contains(search_input) || dev.SerialNo.ToLowerInvariant().Contains(search_input))
+                {
+                    results.Add(dev.Id);
+                }
+            }
+
+            if (results.Count <= 0) return View();
+
+            if (results.Count == 1) return RedirectToAction("Details", new { @id = results[0] });
+
+            return RedirectToAction("List", new { @list = results });
+        }
+
+        [HttpGet]
+        public ActionResult List(List<int> list)
+        {
+            List<Device> devList = new List<Device>();
+            foreach (int id in list)
+                devList.Add(db.Devices.Find(id));
+            ViewBag.DeviceList = devList;
+
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Import(HttpPostedFileBase file, bool update=true)
         {

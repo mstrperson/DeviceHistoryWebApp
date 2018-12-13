@@ -1,0 +1,6 @@
+﻿@model DeviceHistoryWebApp.Device
+
+@using (Html.BeginForm("_Search", "Devices", FormMethod.Post))
+{
+    <span class="search">Search:  @Html.TextBox("search_input") <input type="submit" value="Search" class="btn btn-default"/></span>
+}

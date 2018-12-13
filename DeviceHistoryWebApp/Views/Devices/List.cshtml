@@ -1,0 +1,26 @@
+﻿@model DeviceHistoryWebApp.Device
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="class2">Devices</h2>
+<table>
+    <tr>
+        <th>Uid</th>
+        <th>Serial No</th>
+        <th>Type</th>
+        <th>Notes</th>
+    </tr>
+
+    @foreach (Device dev in ViewBag.DeviceList)
+    {
+        <tr>
+            <td>@Html.ActionLink(dev.Uid, "Details", new { @id = dev.Id })</td>
+            <td>@dev.SerialNo</td>
+            <td>@Html.ActionLink(dev.DeviceType.Name, "Details", "DeviceTypes", routeValues: new { @id = dev.TypeId }, htmlAttributes: null)</td>
+            <td><details><summary>@dev.Notes.Substring(0, 20) + "..."</summary>@dev.Notes</details></td>
+        </tr>
+    }
+
+</table>

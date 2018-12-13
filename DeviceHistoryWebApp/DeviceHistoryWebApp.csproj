@@ -344,6 +344,8 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Users\UserSelect.cshtml" />
     <Content Include="Views\HistoryEntries\ImbededCreate.cshtml" />
+    <Content Include="Views\Devices\_Search.cshtml" />
+    <Content Include="Views\Devices\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
