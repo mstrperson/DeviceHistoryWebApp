@@ -12,17 +12,17 @@
         <h1>DIRECTORY PROJECT</h1>
         <h2>SEARCH:<input type="search"></input></h2>
 
-    <h2>
-                <ul>
-                    @Html.ActionLink("Home", "Index", "Home", htmlAttributes: new { @class = "class1" }) |
-                    @Html.ActionLink("About", "About", "Home", htmlAttributes: new { @class = "class1" }) |
-                    @Html.ActionLink("Contact", "Contact", "Home", htmlAttributes: new { @class = "class1" }) |
-                    @Html.ActionLink("Devices", "Index", "Devices", htmlAttributes: new { @class = "class1" }) |
-                    @Html.ActionLink("Device Types", "Index", "DeviceTypes", htmlAttributes: new { @class = "class1" }) |
-                    @Html.ActionLink("Users", "Index", "Users", htmlAttributes: new { @class = "class1" })
-                </ul>
-            </h2>
-        </header>
+        <h2>
+
+            @Html.ActionLink("Home", "Index", "Home", htmlAttributes: new { @class = "class1" }, routeValues: null) |
+            @Html.ActionLink("About", "About", "Home", htmlAttributes: new { @class = "class1" }, routeValues: null) |
+            @Html.ActionLink("Contact", "Contact", "Home", htmlAttributes: new { @class = "class1" }, routeValues: null) |
+            @Html.ActionLink("Devices", "Index", "Devices", htmlAttributes: new { @class = "class1" }, routeValues: null) |
+            @Html.ActionLink("Device Types", "Index", "DeviceTypes", htmlAttributes: new { @class = "class1" }, routeValues: null) |
+            @Html.ActionLink("Users", "Index", "Users", htmlAttributes: new { @class = "class1" }, routeValues: null)
+
+        </h2>
+    </header>
     <div class="container body-content">
         @RenderBody()
         <hr />

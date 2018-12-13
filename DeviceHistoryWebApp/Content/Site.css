@@ -63,14 +63,14 @@ p.class4 {
     border-bottom: 1px dotted #000000;
  }
 
-    p.class5 {
-        color: #000000;
-        background-color: #FFFFFF;
-        font-size: 15px;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
-        padding-left: 14px;
-        border-bottom: 1px solid #000000;
-    }
+p.class5 {
+    color: #000000;
+    background-color: #FFFFFF;
+    font-size: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+    padding-left: 14px;
+    border-bottom: 1px solid #000000;
+}
 
 h1 {
     padding-left: 14px;
@@ -97,7 +97,7 @@ h2.class2 {
     text-align: left;
     text-transform: uppercase;
     border-bottom: 1px dotted #000000;
-    }
+}
 
 h3 {
     padding-left: 14px;
@@ -149,9 +149,9 @@ th {
     padding: 8px;
 }
 
-    th:last-child {
-        border-right: none;
-    }
+th:last-child {
+    border-right: none;
+}
 
 td {
     border: 1px dotted #000000;
@@ -167,6 +167,7 @@ tr:nth-child(even) {
     background-color: #FFFFFF;
     color: #000000;
     border: 1px dashed #000000;
-    text-align: left padding: 8px;
+    text-align: left; 
+    padding: 8px;
     border-radius: 4px;
 }
