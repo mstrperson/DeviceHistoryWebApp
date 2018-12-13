@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<DeviceHistoryWebApp.Device>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Device Index";
 }
 
-<h2>Index</h2>
-
+<h2>All Devices</h2>
+<p>@Html.ActionLink("Import Devices", "Import")</p>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
