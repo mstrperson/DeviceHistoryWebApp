@@ -70,20 +70,29 @@ namespace DeviceHistoryWebApp.Controllers
                 }
             }
 
-            if (results.Count <= 0) return View();
+            if (results.Count <= 0) return RedirectToAction("Index", "Home");
 
             if (results.Count == 1) return RedirectToAction("Details", new { @id = results[0] });
 
-            return RedirectToAction("List", new { @list = results });
+            string listString = "";
+            for(int i = 0; i < results.Count; i++)
+            {
+                listString += Convert.ToString(results[i]);
+                if (i + 1 < results.Count) listString += ",";
+            }
+
+            return RedirectToAction("List", new { @list = listString });
         }
 
         [HttpGet]
-        public ActionResult _List(List<int> list)
+        public ActionResult _List(string list)
         {
             List<Device> devList = new List<Device>();
 
-            foreach (int id in list)
-                devList.Add(db.Devices.Find(id));
+            string[] listparts = list.Split(',');
+
+            foreach (string idstr in listparts)
+                devList.Add(db.Devices.Find(Int32.Parse(idstr)));
 
             ViewBag.DeviceList = devList;
 
@@ -98,18 +107,23 @@ namespace DeviceHistoryWebApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult List(List<int> list)
+        public ActionResult List(string list)
         {
+            if (list == null) return RedirectToAction("Index");
+
             List<Device> devList = new List<Device>();
-            foreach (int id in list)
-                devList.Add(db.Devices.Find(id));
+            string[] listparts = list.Split(',');
+
+            foreach (string idstr in listparts)
+                devList.Add(db.Devices.Find(Int32.Parse(idstr)));
+
             ViewBag.DeviceList = devList;
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult Import(HttpPostedFileBase file, bool update=true)
+        public ActionResult Import(HttpPostedFileBase file)
         {
             CSV csv = new CSV(file.InputStream);
             int nextId = Device.NextAvailableId;
@@ -134,7 +148,7 @@ namespace DeviceHistoryWebApp.Controllers
 
                     db.Devices.Add(newDevice);
                 }
-                else if(update)
+                else
                 {
                     Device toUpdate = db.Devices.ToList().Where(dev => dev.Uid.Equals(uid)).Single();
                     toUpdate.TypeId = type.Id;
@@ -144,7 +158,7 @@ namespace DeviceHistoryWebApp.Controllers
             }
 
             db.SaveChanges();
-            return Index();
+            return View("Index");
         }
 
         // GET: Devices
@@ -185,6 +199,9 @@ namespace DeviceHistoryWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (device.Notes == null) device.Notes = "";
+                if (device.SerialNo == null) device.SerialNo = "";
+                if (device.Uid == null) return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable);
                 db.Devices.Add(device);
                 db.SaveChanges();
                 return RedirectToAction("Index");

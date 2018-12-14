@@ -30,7 +30,7 @@ namespace DeviceHistoryWebApp.Controllers
 
             foreach (Dictionary<string, string> row in csv)
             {
-                string typeName = row["Name"];
+                string typeName = row["Type Name"];
                 if (db.DeviceTypes.ToList().Where(t => t.Name.Equals(typeName)).Count() <= 0)
                 {
                     DeviceType newType = new DeviceType()

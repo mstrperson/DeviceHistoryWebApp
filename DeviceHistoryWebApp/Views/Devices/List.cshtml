@@ -19,7 +19,16 @@
             <td>@Html.ActionLink(dev.Uid, "Details", new { @id = dev.Id })</td>
             <td>@dev.SerialNo</td>
             <td>@Html.ActionLink(dev.DeviceType.Name, "Details", "DeviceTypes", routeValues: new { @id = dev.TypeId }, htmlAttributes: null)</td>
-            <td><details><summary>@dev.Notes.Substring(0, 20) + "..."</summary>@dev.Notes</details></td>
+            <td>
+            @if (dev.Notes.Length > 30)
+            {
+                <details><summary>@dev.Notes.Substring(0, Math.Min(dev.Notes.Length, 20)) + "..."</summary>@dev.Notes</details>
+            }
+            else
+            {
+                @dev.Notes
+            }
+            </td>
         </tr>
     }
 
